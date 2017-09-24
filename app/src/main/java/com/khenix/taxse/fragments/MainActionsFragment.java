@@ -3,8 +3,6 @@ package com.khenix.taxse.fragments;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -28,8 +26,4 @@ public class MainActionsFragment extends Fragment {
     return inflater.inflate(R.layout.fragment_main_actions, container, false);
   }
 
-  @Override
-  public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-    inflater.inflate(R.menu.main, menu);
-  }
 }
