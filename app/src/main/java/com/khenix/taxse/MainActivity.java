@@ -7,13 +7,18 @@ import android.view.Menu;
 
 import com.khenix.taxse.fragments.MainActionsFragment;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
+  @BindView(R.id.toolbar)
+  Toolbar toolbar;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    ButterKnife.bind(this);
     setSupportActionBar(toolbar);
 
 
