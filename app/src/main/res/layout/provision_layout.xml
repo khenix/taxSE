@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".MainActivity">
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="100dp">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:text="Choose your registration forms."
+			android:textSize="20sp"/>
+
+	</FrameLayout>
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="250dp"
+		tools:ignore="UselessParent">
+
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/recycler_forms"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"/>
+
+	</FrameLayout>
+
+</LinearLayout>

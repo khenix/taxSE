@@ -38,6 +38,9 @@ public class MainActionsFragment extends Fragment {
 
   @OnClick(R.id.btn_prov_list)
   void openProvList() {
+    ProvisionsFragment provisionsFragment = new ProvisionsFragment();
+    getFragmentManager().beginTransaction()
+        .replace(R.id.layout_content, provisionsFragment, "ProvisionsFragment").commit();
 
   }
 }
