@@ -16,10 +16,12 @@ import java.util.Random;
  * Created by kestrella on 9/25/17 at 12:03 PM.
  */
 
-public class ProvisionsAdapter extends RecyclerView.Adapter<ProvisionsAdapter.ViewHolder> implements View.OnClickListener {
+public class ProvisionsAdapter extends RecyclerView.Adapter<ProvisionsAdapter.ViewHolder>
+    implements View.OnClickListener, View.OnLongClickListener {
   private static final String TAG = "ProvisionsAdapter";
   private List<String> mItems;
   private OnItemClickListener mOnItemClickListener;
+  private OnItemLongClickListener mOnItemLongClickListener;
 
 
   public ProvisionsAdapter(List<String> items) {
@@ -63,11 +65,17 @@ public class ProvisionsAdapter extends RecyclerView.Adapter<ProvisionsAdapter.Vi
     return this;
   }
 
+  public ProvisionsAdapter setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+    this.mOnItemLongClickListener = onItemLongClickListener;
+    return this;
+  }
+
   @Override
   public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     Log.e(TAG, "onCreateViewHolder: type:" + viewType);
     View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.provision_item_layout, parent, false);
     v.setOnClickListener(this);
+    v.setOnLongClickListener(this);
     return new ViewHolder(v);
   }
 
@@ -91,10 +99,18 @@ public class ProvisionsAdapter extends RecyclerView.Adapter<ProvisionsAdapter.Vi
     }
   }
 
-  protected static class ViewHolder extends RecyclerView.ViewHolder {
-    public TextView tvTitle;
+  @Override
+  public boolean onLongClick(View v) {
+    if (mOnItemLongClickListener != null) {
+      return mOnItemLongClickListener.onItemLongClick(v, (int) v.getTag());
+    }
+    return true;
+  }
 
-    public ViewHolder(View itemView) {
+  protected static class ViewHolder extends RecyclerView.ViewHolder {
+    TextView tvTitle;
+
+    ViewHolder(View itemView) {
       super(itemView);
       tvTitle = itemView.findViewById(R.id.tv_item_title);
     }
@@ -103,6 +119,12 @@ public class ProvisionsAdapter extends RecyclerView.Adapter<ProvisionsAdapter.Vi
   public interface OnItemClickListener {
 
     void onItemClick(View view, int position);
+
+  }
+
+  public interface OnItemLongClickListener {
+
+    boolean onItemLongClick(View view, int position);
 
   }
 }

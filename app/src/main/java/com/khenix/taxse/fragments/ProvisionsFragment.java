@@ -1,8 +1,10 @@
 package com.khenix.taxse.fragments;
 
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +38,7 @@ public class ProvisionsFragment extends Fragment {
 
   }
 
+  @SuppressWarnings("deprecation")
   @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
@@ -60,6 +63,17 @@ public class ProvisionsFragment extends Fragment {
       @Override
       public void onItemClick(View view, int position) {
         recyclerForms.smoothScrollToPosition(position);
+        ((CardView) view).setCardBackgroundColor(Color.WHITE);
+
+      }
+    });
+
+    demoAdapter1.setOnItemLongClickListener(new ProvisionsAdapter.OnItemLongClickListener() {
+      @Override
+      public boolean onItemLongClick(View view, int position) {
+        recyclerForms.smoothScrollToPosition(position);
+        ((CardView) view).setCardBackgroundColor(getResources().getColor(R.color.selected_item));
+        return true;
       }
     });
     recyclerForms.setAdapter(demoAdapter1);
