@@ -10,15 +10,20 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+
+import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +33,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.Manifest.permission.READ_CONTACTS;
+import static com.firebase.ui.auth.AuthUI.getDefaultTheme;
 
 
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
@@ -36,6 +42,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
    * Id to identity READ_CONTACTS permission request.
    */
   private static final int REQUEST_READ_CONTACTS = 0;
+  private static final int RC_SIGN_IN = 100;
+
 
   // UI references.
   @BindView(R.id.email)
@@ -57,12 +65,46 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     setContentView(R.layout.activity_login);
     ButterKnife.bind(this);
     populateAutoComplete();
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    if (auth.getCurrentUser() != null) {
+      makeLog("logged in ");
+      finish();
+    } else {
+      makeLog("logged out ");
+
+    }
 
   }
 
+  void makeLog(String message) {
+    Log.d("LoginActivity", "********----->>> " + message);
+  }
+
   @OnClick(R.id.email_sign_in_button)
-  void loginListener() {
-//    attemptLogin();
+  public void signIn(View view) {
+    startActivityForResult(
+        AuthUI.getInstance().createSignInIntentBuilder()
+            .setTheme(getDefaultTheme())
+            .setLogo(R.mipmap.ic_launcher)
+            .setAvailableProviders(getSelectedProviders())
+            .setIsSmartLockEnabled(true, true)
+            .setAllowNewEmailAccounts(true)
+            .build(),
+        RC_SIGN_IN);
+  }
+
+  @MainThread
+  private List<AuthUI.IdpConfig> getSelectedProviders() {
+    List<AuthUI.IdpConfig> selectedProviders = new ArrayList<>();
+
+    selectedProviders.add(
+        new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build());
+
+    selectedProviders.add(
+        new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build());
+
+    return selectedProviders;
+
 
   }
 
