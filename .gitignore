@@ -12,3 +12,5 @@
 .externalNativeBuild
 app/*.apk
 *.jks
+google-services.json
+
