@@ -40,7 +40,8 @@ public class MainActionsFragment extends Fragment {
   void openProvList() {
     ProvisionsFragment provisionsFragment = new ProvisionsFragment();
     getFragmentManager().beginTransaction()
-        .replace(R.id.layout_content, provisionsFragment, "ProvisionsFragment").commit();
+        .replace(R.id.layout_content, provisionsFragment, "ProvisionsFragment")
+        .addToBackStack("ProvisionsFragment").commit();
 
   }
 }
