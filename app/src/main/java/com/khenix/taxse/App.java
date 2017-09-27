@@ -17,7 +17,7 @@ import com.khenix.taxse.util.DatabaseUpgradeHelper;
 public class App extends Application {
   private static App appInstance = new App();
 
-  ProvisionInterface provision;
+  public ProvisionInterface provision;
 
   public static App getInstance() {
     return appInstance;

@@ -10,11 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.khenix.taxse.App;
 import com.khenix.taxse.R;
 import com.khenix.taxse.adapter.ProvisionsAdapter;
+import com.khenix.taxse.schema.Provision;
 import com.khenix.taxse.util.ScaleTransformer;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -44,16 +45,13 @@ public class ProvisionsFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
     ButterKnife.bind(this, view);
 
+    List<Provision> provisionList = App.getInstance().provision.list();
 
-    final List<String> title = new ArrayList<>();
-    int size = 10;
-    for (int i = 0; i < size; i++) {
-      title.add("Hello" + i);
-    }
+
     GalleryLayoutManager layoutManager1 = new GalleryLayoutManager(GalleryLayoutManager.HORIZONTAL);
     layoutManager1.attach(recyclerForms, 0);
     layoutManager1.setItemTransformer(new ScaleTransformer());
-    ProvisionsAdapter demoAdapter1 = new ProvisionsAdapter(title) {
+    ProvisionsAdapter demoAdapter1 = new ProvisionsAdapter(provisionList) {
       @Override
       public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return super.onCreateViewHolder(parent, viewType);
