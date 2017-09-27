@@ -1,6 +1,5 @@
 package com.khenix.taxse;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -23,12 +22,10 @@ public class MainActivity extends AppCompatActivity {
     setSupportActionBar(toolbar);
 
 
-//    MainActionsFragment mainActionsFragment = new MainActionsFragment();
-//    getFragmentManager().beginTransaction()
-//        .replace(R.id.layout_content, mainActionsFragment, "MainActionsFragment").commit();
-//
-    finish();
-    startActivity(new Intent(this, LoginActivity.class));
+    MainActionsFragment mainActionsFragment = new MainActionsFragment();
+    getFragmentManager().beginTransaction()
+        .replace(R.id.layout_content, mainActionsFragment, "MainActionsFragment").commit();
+
 
   }
 
