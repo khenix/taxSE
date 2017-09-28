@@ -8,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
 import com.khenix.taxse.App;
 import com.khenix.taxse.R;
 import com.khenix.taxse.adapter.SelectedProvisionsAdapter;
-import com.khenix.taxse.schema.Provision;
 import com.khenix.taxse.schema.SelectedProvision;
 
 import java.util.ArrayList;
@@ -19,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 
 /**
  * Created by kestrella on 9/28/17.
@@ -51,6 +52,19 @@ public class ProvisionsFragment extends Fragment {
     SelectedProvisionsAdapter demoAdapter1 = new SelectedProvisionsAdapter(getActivity(), selectedProvisionList);
     lvProvisions.setAdapter(demoAdapter1);
 
+  }
+
+  @OnItemClick(R.id.lv_provisions)
+  void selectProvision(int position) {
+    SelectedProvision selectedProvision = selectedProvisionList.get(position);
+    Bundle bundle = new Bundle();
+    bundle.putString("selectedProvision", new Gson().toJson(selectedProvision));
+
+    RequirementListFragment requirementListFragment = new RequirementListFragment();
+    requirementListFragment.setArguments(bundle);
+    getFragmentManager().beginTransaction()
+        .replace(R.id.layout_content, requirementListFragment, "RequirementListFragment")
+        .addToBackStack("RequirementListFragment").commit();
   }
 
 }
