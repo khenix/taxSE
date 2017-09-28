@@ -45,10 +45,10 @@ public class MainActionsFragment extends Fragment {
 
   @OnClick(R.id.btn_prov_list)
   void openProvList() {
-    ProvisionsFragment provisionsFragment = new ProvisionsFragment();
+    ProvisionSelectionFragment provisionSelectionFragment = new ProvisionSelectionFragment();
     getFragmentManager().beginTransaction()
-        .replace(R.id.layout_content, provisionsFragment, "ProvisionsFragment")
-        .addToBackStack("ProvisionsFragment").commit();
+        .replace(R.id.layout_content, provisionSelectionFragment, "ProvisionSelectionFragment")
+        .addToBackStack("ProvisionSelectionFragment").commit();
 
   }
 

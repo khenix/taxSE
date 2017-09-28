@@ -30,8 +30,8 @@ import github.hellocsl.layoutmanager.gallery.GalleryLayoutManager;
  * Created by kestrella on 9/25/17 at 11:55 AM.
  */
 
-public class ProvisionsFragment extends Fragment {
-  private static final String TAG = ProvisionsFragment.class.getSimpleName();
+public class ProvisionSelectionFragment extends Fragment {
+  private static final String TAG = ProvisionSelectionFragment.class.getSimpleName();
 
   @BindView(R.id.recycler_forms)
   RecyclerView recyclerForms;
