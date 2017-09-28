@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.khenix.taxse.R;
@@ -20,8 +21,8 @@ import java.util.List;
  */
 
 public class SelectedProvisionsAdapter extends ArrayAdapter<SelectedProvision> {
-  Context context;
-  List<SelectedProvision> selectedProvisionList;
+  private Context context;
+  private List<SelectedProvision> selectedProvisionList;
 
   public SelectedProvisionsAdapter(Context context, List<SelectedProvision> objects) {
     super(context, R.layout.selected_provision_item_layout, objects);
@@ -56,6 +57,7 @@ public class SelectedProvisionsAdapter extends ArrayAdapter<SelectedProvision> {
   //store the views here
   private static class ViewHolder {
     private TextView tvId, tvTitle;
+    private LinearLayout layout_content_handler;
   }
 
 
@@ -74,6 +76,7 @@ public class SelectedProvisionsAdapter extends ArrayAdapter<SelectedProvision> {
       viewHolder = new ViewHolder();
       viewHolder.tvId = rowView.findViewById(R.id.tv_item_idd);
       viewHolder.tvTitle = rowView.findViewById(R.id.tv_item_titlee);
+      viewHolder.layout_content_handler = rowView.findViewById(R.id.layout_content_handler);
       rowView.setTag(viewHolder);
 
     } else {
@@ -86,7 +89,14 @@ public class SelectedProvisionsAdapter extends ArrayAdapter<SelectedProvision> {
 
       viewHolder.tvId.setText(String.valueOf(object.getId()));
       viewHolder.tvTitle.setText(object.getTitle());
+      if (object.getCompleted()) {
+        viewHolder.layout_content_handler.setBackgroundColor(context.getResources().getColor(R.color.selected_item));
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(120, 10, 120, 10);
+        viewHolder.layout_content_handler.setLayoutParams(params);
 
+      }
 
     } else {
       throw new NullPointerException();

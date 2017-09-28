@@ -2,6 +2,7 @@ package com.khenix.taxse.schema;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.Generated;
 
@@ -20,14 +21,20 @@ public class SelectedProvision {
   @Property(nameInDb = "requirements")
   private String requirements;
 
-  @Generated(hash = 524491342)
-  public SelectedProvision(long id, String title, String requirements) {
-      this.id = id;
-      this.title = title;
-      this.requirements = requirements;
-  }
+  @Property(nameInDb = "completed")
+  @NotNull
+  private boolean completed;
 
-  @Generated(hash = 1513279892)
+  @Generated(hash = 1589701026)
+public SelectedProvision(long id, String title, String requirements,
+        boolean completed) {
+    this.id = id;
+    this.title = title;
+    this.requirements = requirements;
+    this.completed = completed;
+}
+
+@Generated(hash = 1513279892)
   public SelectedProvision() {
   }
 
@@ -54,5 +61,13 @@ public class SelectedProvision {
   public void setRequirements(String requirements) {
       this.requirements = requirements;
   }
+
+public boolean getCompleted() {
+    return this.completed;
+}
+
+public void setCompleted(boolean completed) {
+    this.completed = completed;
+}
 
 }
