@@ -43,7 +43,7 @@ public class ProvisionSelectionFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                            Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.provision_layout, container, false);
+    return inflater.inflate(R.layout.provision_selection_layout, container, false);
 
   }
 
@@ -99,6 +99,10 @@ public class ProvisionSelectionFragment extends Fragment {
   @OnClick(R.id.fab_add_to_provisions)
   void addToProvisions() {
     makeLog(new Gson().toJson(selectedProvisions));
+    ProvisionsFragment provisionsFragment = new ProvisionsFragment();
+    getFragmentManager().beginTransaction()
+        .replace(R.id.layout_content, provisionsFragment, "ProvisionsFragment")
+        .addToBackStack("ProvisionSelectionFragment").commit();
   }
 
   boolean isItemExistOnSelected(Provision provision) {
