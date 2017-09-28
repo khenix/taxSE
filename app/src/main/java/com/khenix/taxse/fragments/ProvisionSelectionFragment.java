@@ -60,6 +60,9 @@ public class ProvisionSelectionFragment extends Fragment {
 
     provisionList = App.getInstance().provision.list();
 
+    makeLog(new Gson().toJson(provisionList));
+    makeLog(new Gson().toJson(App.getInstance().provisionRequirement.list()));
+
 
     GalleryLayoutManager layoutManager1 = new GalleryLayoutManager(GalleryLayoutManager.HORIZONTAL);
     layoutManager1.attach(recyclerForms, 0);

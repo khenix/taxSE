@@ -26,15 +26,15 @@ public class SelectedProvision {
   private boolean completed;
 
   @Generated(hash = 1589701026)
-public SelectedProvision(long id, String title, String requirements,
-        boolean completed) {
-    this.id = id;
-    this.title = title;
-    this.requirements = requirements;
-    this.completed = completed;
-}
+  public SelectedProvision(long id, String title, String requirements,
+          boolean completed) {
+      this.id = id;
+      this.title = title;
+      this.requirements = requirements;
+      this.completed = completed;
+  }
 
-@Generated(hash = 1513279892)
+  @Generated(hash = 1513279892)
   public SelectedProvision() {
   }
 
@@ -62,12 +62,12 @@ public SelectedProvision(long id, String title, String requirements,
       this.requirements = requirements;
   }
 
-public boolean getCompleted() {
-    return this.completed;
-}
+  public boolean getCompleted() {
+      return this.completed;
+  }
 
-public void setCompleted(boolean completed) {
-    this.completed = completed;
-}
+  public void setCompleted(boolean completed) {
+      this.completed = completed;
+  }
 
 }

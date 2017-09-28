@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.github.yuweiguocn.library.greendao.MigrationHelper;
 import com.khenix.taxse.schema.DaoMaster;
 import com.khenix.taxse.schema.ProvisionDao;
+import com.khenix.taxse.schema.ProvisionRequirementDao;
 import com.khenix.taxse.schema.SelectedProvisionDao;
 
 import org.greenrobot.greendao.database.Database;
@@ -33,7 +34,7 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
       public void onDropAllTables(Database db, boolean ifExists) {
         DaoMaster.dropAllTables(db, ifExists);
       }
-    }, ProvisionDao.class, SelectedProvisionDao.class);
+    }, ProvisionRequirementDao.class, ProvisionDao.class, SelectedProvisionDao.class);
   }
 
 }
