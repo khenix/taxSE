@@ -37,7 +37,15 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     compile 'github.hellocsl:GalleryLayoutManager:1.0.6'
     compile 'com.google.code.gson:gson:2.7'
+    compile 'org.greenrobot:greendao:3.2.2'
+    compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.0.0'
+    compile 'org.modelmapper:modelmapper:0.7.7'
 
 
 }
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'org.greenrobot.greendao'
+
+greendao {
+    schemaVersion 1
+}

@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.khenix.taxse.R;
+import com.khenix.taxse.schema.Provision;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by kestrella on 9/25/17 at 12:03 PM.
@@ -19,46 +19,46 @@ import java.util.Random;
 public class ProvisionsAdapter extends RecyclerView.Adapter<ProvisionsAdapter.ViewHolder>
     implements View.OnClickListener, View.OnLongClickListener {
   private static final String TAG = "ProvisionsAdapter";
-  private List<String> mItems;
+  private List<Provision> mItems;
   private OnItemClickListener mOnItemClickListener;
   private OnItemLongClickListener mOnItemLongClickListener;
 
 
-  public ProvisionsAdapter(List<String> items) {
+  public ProvisionsAdapter(List<Provision> items) {
     this.mItems = items;
   }
+//
+//  public void addData() {
+//    if (mItems != null) {
+//      for (int i = 0; i < 10; i++) {
+//        mItems.add("Extra:" + i);
+//      }
+//      notifyDataSetChanged();
+//    }
+//  }
 
-  public void addData() {
-    if (mItems != null) {
-      for (int i = 0; i < 10; i++) {
-        mItems.add("Extra:" + i);
-      }
-      notifyDataSetChanged();
-    }
-  }
+//  private static final Random RANDOM = new Random();
 
-  private static final Random RANDOM = new Random();
-
-  public int dataChange() {
-    int result = 0;
-    if (mItems != null) {
-      if (RANDOM.nextBoolean()) {
-        for (int i = 0; i < 10; i++) {
-          mItems.add("Extra:" + i);
-        }
-        result = 1;
-      } else {
-        int size = mItems.size();
-        int cut = size / 2;
-        for (int i = size - 1; i > cut; i--) {
-          mItems.remove(i);
-        }
-        result = -1;
-      }
-      notifyDataSetChanged();
-    }
-    return result;
-  }
+//  public int dataChange() {
+//    int result = 0;
+//    if (mItems != null) {
+//      if (RANDOM.nextBoolean()) {
+//        for (int i = 0; i < 10; i++) {
+//          mItems.add("Extra:" + i);
+//        }
+//        result = 1;
+//      } else {
+//        int size = mItems.size();
+//        int cut = size / 2;
+//        for (int i = size - 1; i > cut; i--) {
+//          mItems.remove(i);
+//        }
+//        result = -1;
+//      }
+//      notifyDataSetChanged();
+//    }
+//    return result;
+//  }
 
   public ProvisionsAdapter setOnItemClickListener(OnItemClickListener onItemClickListener) {
     this.mOnItemClickListener = onItemClickListener;
@@ -82,8 +82,9 @@ public class ProvisionsAdapter extends RecyclerView.Adapter<ProvisionsAdapter.Vi
   @Override
   public void onBindViewHolder(ViewHolder holder, int position) {
     Log.d(TAG, "onBindViewHolder: position:" + position);
-    String item = mItems.get(position);
-    holder.tvTitle.setText("HelloWorld：" + item);
+    Provision item = mItems.get(position);
+    holder.tvId.setText(String.valueOf(item.getId()));
+    holder.tvTitle.setText(item.getTitle());
     holder.itemView.setTag(position);
   }
 
@@ -108,10 +109,11 @@ public class ProvisionsAdapter extends RecyclerView.Adapter<ProvisionsAdapter.Vi
   }
 
   protected static class ViewHolder extends RecyclerView.ViewHolder {
-    TextView tvTitle;
+    TextView tvId, tvTitle;
 
     ViewHolder(View itemView) {
       super(itemView);
+      tvId = itemView.findViewById(R.id.tv_item_id);
       tvTitle = itemView.findViewById(R.id.tv_item_title);
     }
   }

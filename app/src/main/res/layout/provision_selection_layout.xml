@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
@@ -30,6 +31,21 @@
 			android:id="@+id/recycler_forms"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"/>
+
+	</FrameLayout>
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		tools:ignore="UselessParent">
+
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/fab_add_to_provisions"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:src="@drawable/ic_add_24dp"
+			app:useCompatPadding="true"/>
 
 	</FrameLayout>
 
