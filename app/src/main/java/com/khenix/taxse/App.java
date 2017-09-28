@@ -8,6 +8,8 @@ import com.khenix.taxse.schema.DaoMaster;
 import com.khenix.taxse.schema.DaoSession;
 import com.khenix.taxse.sources.ProvisionImpl;
 import com.khenix.taxse.sources.ProvisionInterface;
+import com.khenix.taxse.sources.SelectedProvisionImpl;
+import com.khenix.taxse.sources.SelectedProvisionInterface;
 import com.khenix.taxse.util.DatabaseUpgradeHelper;
 
 /**
@@ -18,6 +20,7 @@ public class App extends Application {
   private static App appInstance = new App();
 
   public ProvisionInterface provision;
+  public SelectedProvisionInterface selectedProvision;
 
   public static App getInstance() {
     return appInstance;
@@ -29,6 +32,7 @@ public class App extends Application {
     appInstance = this;
     DaoSession daoSession = makeDaoSession(this);
     provision = new ProvisionImpl(daoSession);
+    selectedProvision = new SelectedProvisionImpl(daoSession);
 
   }
 

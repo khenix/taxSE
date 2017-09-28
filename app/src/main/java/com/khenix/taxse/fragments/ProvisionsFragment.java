@@ -12,6 +12,7 @@ import com.khenix.taxse.App;
 import com.khenix.taxse.R;
 import com.khenix.taxse.adapter.SelectedProvisionsAdapter;
 import com.khenix.taxse.schema.Provision;
+import com.khenix.taxse.schema.SelectedProvision;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class ProvisionsFragment extends Fragment {
   @BindView(R.id.lv_provisions)
   ListView lvProvisions;
 
-  List<Provision> provisionList = new ArrayList<>();
+  List<SelectedProvision> selectedProvisionList = new ArrayList<>();
 
   @Nullable
   @Override
@@ -45,9 +46,9 @@ public class ProvisionsFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
     ButterKnife.bind(this, view);
     //TODO: replace with selected list of provisions
-    provisionList = App.getInstance().provision.list();
+    selectedProvisionList = App.getInstance().selectedProvision.list();
 
-    SelectedProvisionsAdapter demoAdapter1 = new SelectedProvisionsAdapter(getActivity(), provisionList);
+    SelectedProvisionsAdapter demoAdapter1 = new SelectedProvisionsAdapter(getActivity(), selectedProvisionList);
     lvProvisions.setAdapter(demoAdapter1);
 
   }

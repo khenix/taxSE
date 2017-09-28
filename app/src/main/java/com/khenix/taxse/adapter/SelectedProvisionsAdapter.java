@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.khenix.taxse.R;
-import com.khenix.taxse.schema.Provision;
+import com.khenix.taxse.schema.SelectedProvision;
 
 import java.util.List;
 
@@ -19,37 +19,37 @@ import java.util.List;
  * Created by kestrella on 9/28/17.
  */
 
-public class SelectedProvisionsAdapter extends ArrayAdapter<Provision> {
+public class SelectedProvisionsAdapter extends ArrayAdapter<SelectedProvision> {
   Context context;
-  List<Provision> componentDTOList;
+  List<SelectedProvision> selectedProvisionList;
 
-  public SelectedProvisionsAdapter(Context context, List<Provision> objects) {
+  public SelectedProvisionsAdapter(Context context, List<SelectedProvision> objects) {
     super(context, R.layout.selected_provision_item_layout, objects);
     this.context = context;
-    this.componentDTOList = objects;
+    this.selectedProvisionList = objects;
 
   }
 
   @Override
   public int getCount() {
-    if (componentDTOList != null)
-      return componentDTOList.size();
+    if (selectedProvisionList != null)
+      return selectedProvisionList.size();
 
     return 0;
   }
 
   @Override
-  public Provision getItem(int position) {
-    if (componentDTOList != null && componentDTOList.size() > 0 && position < componentDTOList.size()) {
-      return componentDTOList.get(position);
+  public SelectedProvision getItem(int position) {
+    if (selectedProvisionList != null && selectedProvisionList.size() > 0 && position < selectedProvisionList.size()) {
+      return selectedProvisionList.get(position);
     }
 
     return null;
   }
 
 
-  public void setData(List<Provision> data) {
-    componentDTOList = data;
+  public void setData(List<SelectedProvision> data) {
+    selectedProvisionList = data;
     notifyDataSetChanged();
   }
 
@@ -80,7 +80,7 @@ public class SelectedProvisionsAdapter extends ArrayAdapter<Provision> {
       viewHolder = (ViewHolder) rowView.getTag();
     }
 
-    Provision object = getItem(position);
+    SelectedProvision object = getItem(position);
 
     if (object != null) {
 
