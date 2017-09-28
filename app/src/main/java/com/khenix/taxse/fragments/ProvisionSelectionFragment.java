@@ -16,7 +16,10 @@ import com.khenix.taxse.App;
 import com.khenix.taxse.R;
 import com.khenix.taxse.adapter.ProvisionsAdapter;
 import com.khenix.taxse.schema.Provision;
+import com.khenix.taxse.schema.SelectedProvision;
 import com.khenix.taxse.util.ScaleTransformer;
+
+import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +41,8 @@ public class ProvisionSelectionFragment extends Fragment {
 
   List<Provision> provisionList = new ArrayList<>();
   List<Provision> selectedProvisions = new ArrayList<>();
+  ModelMapper mapper = new ModelMapper();
+
 
   @Nullable
   @Override
@@ -99,6 +104,10 @@ public class ProvisionSelectionFragment extends Fragment {
   @OnClick(R.id.fab_add_to_provisions)
   void addToProvisions() {
     makeLog(new Gson().toJson(selectedProvisions));
+    for (Provision each: selectedProvisions) {
+      App.getInstance().selectedProvision.insertOrReplace(mapper.map(each, SelectedProvision.class));
+    }
+
     ProvisionsFragment provisionsFragment = new ProvisionsFragment();
     getFragmentManager().beginTransaction()
         .replace(R.id.layout_content, provisionsFragment, "ProvisionsFragment")

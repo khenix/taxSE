@@ -39,6 +39,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
     compile 'org.greenrobot:greendao:3.2.2'
     compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.0.0'
+    compile 'org.modelmapper:modelmapper:0.7.7'
 
 
 }
@@ -46,5 +47,5 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'org.greenrobot.greendao'
 
 greendao {
-    schemaVersion 1
+    schemaVersion 2
 }
