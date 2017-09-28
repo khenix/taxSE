@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +65,7 @@ public class RequirementAdapter extends ArrayAdapter<ProvisionRequirement> {
   public View getView(final int position, @Nullable View convertView,
                       @NonNull ViewGroup parent) {
 
-    ViewHolder viewHolder;
+    final ViewHolder viewHolder;
     View rowView = convertView;
 
     if (rowView == null) {
@@ -79,11 +80,23 @@ public class RequirementAdapter extends ArrayAdapter<ProvisionRequirement> {
       viewHolder = (ViewHolder) rowView.getTag();
     }
 
-    ProvisionRequirement object = getItem(position);
+    final ProvisionRequirement object = getItem(position);
 
     if (object != null) {
       viewHolder.checkRequirement.setText(object.getName());
       viewHolder.checkRequirement.setChecked(object.getCompleted());
+
+      viewHolder.checkRequirement.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          if (viewHolder.checkRequirement.isChecked()) {
+            object.setCompleted(true);
+          } else {
+            object.setCompleted(false);
+          }
+          notifyDataSetChanged();
+        }
+      });
 
 
     } else {

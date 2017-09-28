@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.khenix.taxse.App;
 import com.khenix.taxse.R;
 import com.khenix.taxse.adapter.SelectedProvisionsAdapter;
+import com.khenix.taxse.schema.ProvisionRequirement;
 import com.khenix.taxse.schema.SelectedProvision;
 
 import java.util.ArrayList;
@@ -20,6 +21,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
+
+import static com.khenix.taxse.util.Utils.parseGenericList;
 
 /**
  * Created by kestrella on 9/28/17.
@@ -46,8 +49,8 @@ public class ProvisionsFragment extends Fragment {
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     ButterKnife.bind(this, view);
-    //TODO: replace with selected list of provisions
     selectedProvisionList = App.getInstance().selectedProvision.list();
+    scanCompleteness();
 
     SelectedProvisionsAdapter demoAdapter1 = new SelectedProvisionsAdapter(getActivity(), selectedProvisionList);
     lvProvisions.setAdapter(demoAdapter1);
@@ -65,6 +68,25 @@ public class ProvisionsFragment extends Fragment {
     getFragmentManager().beginTransaction()
         .replace(R.id.layout_content, requirementListFragment, "RequirementListFragment")
         .addToBackStack("RequirementListFragment").commit();
+  }
+
+  void scanCompleteness() {
+    for (SelectedProvision selectedProvision: selectedProvisionList) {
+      List<Long> requirementIDs = parseGenericList(selectedProvision.getRequirements(), Long[].class);
+      int requirementLen = requirementIDs.size();
+      int completedLen = 0;
+      for (Long id : requirementIDs) {
+        ProvisionRequirement provisionRequirement = App.getInstance().provisionRequirement.get(id);
+        if (provisionRequirement.getCompleted()) {
+         completedLen++;
+        }
+      }
+      if (completedLen == requirementLen) {
+        selectedProvision.setCompleted(true);
+      } else {
+        selectedProvision.setCompleted(false);
+      }
+    }
   }
 
 }

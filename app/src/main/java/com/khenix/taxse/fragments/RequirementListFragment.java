@@ -3,6 +3,7 @@ package com.khenix.taxse.fragments;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.khenix.taxse.util.Utils.parseGeneric;
 import static com.khenix.taxse.util.Utils.parseGenericList;
@@ -29,6 +31,7 @@ import static com.khenix.taxse.util.Utils.parseGenericList;
  */
 
 public class RequirementListFragment extends Fragment {
+  private static final String TAG = RequirementListFragment.class.getSimpleName();
   List<ProvisionRequirement> provisionRequirementList = new ArrayList<>();
 
   @BindView(R.id.lv_requirements)
@@ -73,5 +76,20 @@ public class RequirementListFragment extends Fragment {
     lvRequirements.setAdapter(requirementAdapter);
     tvName.setText(selectedProvision.getTitle() + " (" + selectedProvision.getId() + ")");
 
+  }
+
+  @OnClick(R.id.btn_save_requirements)
+  void saveRequirements() {
+    for (ProvisionRequirement provisionRequirement : provisionRequirementList) {
+      App.getInstance().provisionRequirement.insertOrReplace(provisionRequirement);
+    }
+    getFragmentManager().popBackStack();
+
+  }
+
+
+  private void makeLog(String message) {
+    String PREFIX = "*********----->>> ";
+    Log.d(TAG, PREFIX + message);
   }
 }
