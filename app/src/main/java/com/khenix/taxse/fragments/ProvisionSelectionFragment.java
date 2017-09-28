@@ -111,6 +111,7 @@ public class ProvisionSelectionFragment extends Fragment {
       App.getInstance().selectedProvision.insertOrReplace(mapper.map(each, SelectedProvision.class));
     }
 
+    getFragmentManager().popBackStack();
     ProvisionsFragment provisionsFragment = new ProvisionsFragment();
     getFragmentManager().beginTransaction()
         .replace(R.id.layout_content, provisionsFragment, "ProvisionsFragment")

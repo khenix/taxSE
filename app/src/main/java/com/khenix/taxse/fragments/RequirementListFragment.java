@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.khenix.taxse.App;
 import com.khenix.taxse.R;
 import com.khenix.taxse.adapter.RequirementAdapter;
@@ -83,6 +84,8 @@ public class RequirementListFragment extends Fragment {
     for (ProvisionRequirement provisionRequirement : provisionRequirementList) {
       App.getInstance().provisionRequirement.insertOrReplace(provisionRequirement);
     }
+    makeLog("save requirements " + new Gson().toJson(provisionRequirementList));
+    makeLog("list requirements " + new Gson().toJson(App.getInstance().provisionRequirement.list()));
     getFragmentManager().popBackStack();
 
   }

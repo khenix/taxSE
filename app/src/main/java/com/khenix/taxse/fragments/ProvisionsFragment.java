@@ -86,6 +86,7 @@ public class ProvisionsFragment extends Fragment {
       } else {
         selectedProvision.setCompleted(false);
       }
+      App.getInstance().selectedProvision.insertOrReplace(selectedProvision);
     }
   }
 

@@ -46,10 +46,18 @@ public class MainActionsFragment extends Fragment {
 
   @OnClick(R.id.btn_prov_list)
   void openProvList() {
-    ProvisionSelectionFragment provisionSelectionFragment = new ProvisionSelectionFragment();
-    getFragmentManager().beginTransaction()
-        .replace(R.id.layout_content, provisionSelectionFragment, "ProvisionSelectionFragment")
-        .addToBackStack("ProvisionSelectionFragment").commit();
+    if (App.getInstance().selectedProvision.list().size() <= 0) {
+      ProvisionSelectionFragment provisionSelectionFragment = new ProvisionSelectionFragment();
+      getFragmentManager().beginTransaction()
+          .replace(R.id.layout_content, provisionSelectionFragment, "ProvisionSelectionFragment")
+          .addToBackStack("ProvisionSelectionFragment").commit();
+    } else {
+      ProvisionsFragment provisionsFragment = new ProvisionsFragment();
+      getFragmentManager().beginTransaction()
+          .replace(R.id.layout_content, provisionsFragment, "ProvisionsFragment")
+          .addToBackStack("ProvisionSelectionFragment").commit();
+    }
+
 
   }
 
@@ -69,76 +77,81 @@ public class MainActionsFragment extends Fragment {
 //    App.getInstance().provision.insertOrReplace(_1906);
 
     // ---------------- provision 1 --------------------------
-    ProvisionRequirement _1 = new ProvisionRequirement();
-    _1.setId(1);
-    _1.setCompleted(false);
-    _1.setName("Business permit");
-    App.getInstance().provisionRequirement.insertOrReplace(_1);
+    if (App.getInstance().provisionRequirement.list().size() <= 0) {
 
-    ProvisionRequirement _2 = new ProvisionRequirement();
-    _2.setId(2);
-    _2.setCompleted(false);
-    _2.setName("NSO birth cert");
-    App.getInstance().provisionRequirement.insertOrReplace(_2);
 
-    ProvisionRequirement _3 = new ProvisionRequirement();
-    _3.setId(3);
-    _3.setCompleted(false);
-    _3.setName("Contract/Company certificate");
-    App.getInstance().provisionRequirement.insertOrReplace(_3);
+      ProvisionRequirement _1 = new ProvisionRequirement();
+      _1.setId(1);
+      _1.setCompleted(false);
+      _1.setName("Business permit");
+      App.getInstance().provisionRequirement.insertOrReplace(_1);
 
-    Provision _1904 = new Provision();
-    _1904.setId(1904);
-    _1904.setTitle("Application Form for TIN");
-    List<Long> _1904_requirements = new ArrayList<>();
-    _1904_requirements.add(_1.getId());
-    _1904_requirements.add(_2.getId());
-    _1904_requirements.add(_3.getId());
-    _1904.setRequirements(new Gson().toJson(_1904_requirements));
-    App.getInstance().provision.insertOrReplace(_1904);
+      ProvisionRequirement _2 = new ProvisionRequirement();
+      _2.setId(2);
+      _2.setCompleted(false);
+      _2.setName("NSO birth cert");
+      App.getInstance().provisionRequirement.insertOrReplace(_2);
 
-    // ---------------- provision 2 --------------------------
-    ProvisionRequirement _4 = new ProvisionRequirement();
-    _4.setId(4);
-    _4.setCompleted(false);
-    _4.setName("Accomplished 1905");
-    App.getInstance().provisionRequirement.insertOrReplace(_4);
+      ProvisionRequirement _3 = new ProvisionRequirement();
+      _3.setId(3);
+      _3.setCompleted(false);
+      _3.setName("Contract/Company certificate");
+      App.getInstance().provisionRequirement.insertOrReplace(_3);
 
-    ProvisionRequirement _5 = new ProvisionRequirement();
-    _5.setId(5);
-    _5.setCompleted(false);
-    _5.setName("Notice of closure (business)");
-    App.getInstance().provisionRequirement.insertOrReplace(_5);
+      Provision _1904 = new Provision();
+      _1904.setId(1904);
+      _1904.setTitle("Application Form for TIN");
+      List<Long> _1904_requirements = new ArrayList<>();
+      _1904_requirements.add(_1.getId());
+      _1904_requirements.add(_2.getId());
+      _1904_requirements.add(_3.getId());
+      _1904.setRequirements(new Gson().toJson(_1904_requirements));
+      App.getInstance().provision.insertOrReplace(_1904);
 
-    ProvisionRequirement _6 = new ProvisionRequirement();
-    _6.setId(6);
-    _6.setCompleted(false);
-    _6.setName("Estate tax return");
-    App.getInstance().provisionRequirement.insertOrReplace(_6);
+      // ---------------- provision 2 --------------------------
+      ProvisionRequirement _4 = new ProvisionRequirement();
+      _4.setId(4);
+      _4.setCompleted(false);
+      _4.setName("Accomplished 1905");
+      App.getInstance().provisionRequirement.insertOrReplace(_4);
 
-    ProvisionRequirement _7 = new ProvisionRequirement();
-    _7.setId(7);
-    _7.setCompleted(false);
-    _7.setName("List of ending inventory of goods");
-    App.getInstance().provisionRequirement.insertOrReplace(_7);
+      ProvisionRequirement _5 = new ProvisionRequirement();
+      _5.setId(5);
+      _5.setCompleted(false);
+      _5.setName("Notice of closure (business)");
+      App.getInstance().provisionRequirement.insertOrReplace(_5);
 
-    ProvisionRequirement _8 = new ProvisionRequirement();
-    _8.setId(8);
-    _8.setCompleted(false);
-    _8.setName("All business notices and permits");
-    App.getInstance().provisionRequirement.insertOrReplace(_8);
+      ProvisionRequirement _6 = new ProvisionRequirement();
+      _6.setId(6);
+      _6.setCompleted(false);
+      _6.setName("Estate tax return");
+      App.getInstance().provisionRequirement.insertOrReplace(_6);
 
-    Provision _1905 = new Provision();
-    _1905.setId(1905);
-    _1905.setTitle("Application Form for Registration Update");
-    List<Long> _1905_requirements = new ArrayList<>();
-    _1905_requirements.add(_4.getId());
-    _1905_requirements.add(_5.getId());
-    _1905_requirements.add(_6.getId());
-    _1905_requirements.add(_7.getId());
-    _1905_requirements.add(_8.getId());
-    _1905.setRequirements(new Gson().toJson(_1905_requirements));
-    App.getInstance().provision.insertOrReplace(_1905);
+      ProvisionRequirement _7 = new ProvisionRequirement();
+      _7.setId(7);
+      _7.setCompleted(false);
+      _7.setName("List of ending inventory of goods");
+      App.getInstance().provisionRequirement.insertOrReplace(_7);
+
+      ProvisionRequirement _8 = new ProvisionRequirement();
+      _8.setId(8);
+      _8.setCompleted(false);
+      _8.setName("All business notices and permits");
+      App.getInstance().provisionRequirement.insertOrReplace(_8);
+
+      Provision _1905 = new Provision();
+      _1905.setId(1905);
+      _1905.setTitle("Application Form for Registration Update");
+      List<Long> _1905_requirements = new ArrayList<>();
+      _1905_requirements.add(_4.getId());
+      _1905_requirements.add(_5.getId());
+      _1905_requirements.add(_6.getId());
+      _1905_requirements.add(_7.getId());
+      _1905_requirements.add(_8.getId());
+      _1905.setRequirements(new Gson().toJson(_1905_requirements));
+      App.getInstance().provision.insertOrReplace(_1905);
+
+    }
 
 
   }
