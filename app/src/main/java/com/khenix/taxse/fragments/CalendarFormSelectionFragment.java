@@ -109,7 +109,42 @@ public class CalendarFormSelectionFragment extends Fragment {
   private void saveAsSelectedFilings() {
     makeLog(new Gson().toJson(selectedFilings));
     for (Filing each : selectedFilings) {
-      App.getInstance().selectedFiling.insertOrReplace(mapper.map(each, SelectedFiling.class));
+//      App.getInstance().selectedFiling.insertOrReplace(mapper.map(each, SelectedFiling.class));
+      SelectedFiling selectedFiling = mapper.map(each, SelectedFiling.class);
+      if (selectedFiling.getId().equalsIgnoreCase("1601-E")) {
+
+      }
+      if (selectedFiling.getId().equalsIgnoreCase("1601-C")) {
+
+      }
+      if (selectedFiling.getId().equalsIgnoreCase("1604-CF")) {
+
+      }
+      if (selectedFiling.getId().equalsIgnoreCase("1604-E")) {
+
+      }
+      if (selectedFiling.getId().equalsIgnoreCase("2551-M")) {
+
+      }
+      if (selectedFiling.getId().equalsIgnoreCase("2550-M")) {
+
+      }
+      if (selectedFiling.getId().equalsIgnoreCase("2550-Q")) {
+
+      }
+      if (selectedFiling.getId().equalsIgnoreCase("1701-Q")) {
+
+      }
+      if (selectedFiling.getId().equalsIgnoreCase("1701")) {
+
+      }
+      if (selectedFiling.getId().equalsIgnoreCase("0605")) {
+
+      }
+      if (selectedFiling.getId().equalsIgnoreCase("1901")) {
+
+      }
+
     }
     // // TODO: 9/29/17 filing dates 
   }
