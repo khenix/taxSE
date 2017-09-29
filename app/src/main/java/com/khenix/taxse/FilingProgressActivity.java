@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.khenix.taxse.fragments.PayerTypeAFragment;
 import com.khenix.taxse.fragments.PayerTypeBFragment;
+import com.khenix.taxse.fragments.PeriodTypeAFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ public class FilingProgressActivity extends AppCompatActivity {
 
   PayerTypeAFragment payerTypeAFragment;
   PayerTypeBFragment payerTypeBFragment;
+  PeriodTypeAFragment periodTypeAFragment;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +46,10 @@ public class FilingProgressActivity extends AppCompatActivity {
     ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
     payerTypeAFragment = new PayerTypeAFragment();
     payerTypeBFragment = new PayerTypeBFragment();
+    periodTypeAFragment = new PeriodTypeAFragment();
     adapter.addFragment(payerTypeAFragment, "Step 1");
     adapter.addFragment(payerTypeBFragment, "Step 2");
+    adapter.addFragment(periodTypeAFragment, "Step 3");
     viewPager.setAdapter(adapter);
   }
 

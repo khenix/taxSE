@@ -32,6 +32,10 @@
 		<item>Professional</item>
 		<item>Sole-Proprietor</item>
 	</string-array>
+	<string-array name="period_type_a_list">
+		<item>Calendar year</item>
+		<item>Fiscal year</item>
+	</string-array>
 
 
 </resources>
