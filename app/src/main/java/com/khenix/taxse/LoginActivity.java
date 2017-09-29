@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     startActivityForResult(
         AuthUI.getInstance().createSignInIntentBuilder()
             .setTheme(getDefaultTheme())
-            .setLogo(R.mipmap.ic_launcher)
+            .setLogo(R.drawable.ic_launcher)
             .setAvailableProviders(getSelectedProviders())
             .setIsSmartLockEnabled(false, false)
             .setAllowNewEmailAccounts(true)
