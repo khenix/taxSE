@@ -6,10 +6,14 @@ import android.content.Context;
 import com.github.yuweiguocn.library.greendao.MigrationHelper;
 import com.khenix.taxse.schema.DaoMaster;
 import com.khenix.taxse.schema.DaoSession;
+import com.khenix.taxse.sources.FilingImpl;
+import com.khenix.taxse.sources.FilingInterface;
 import com.khenix.taxse.sources.ProvisionImpl;
 import com.khenix.taxse.sources.ProvisionInterface;
 import com.khenix.taxse.sources.ProvisionRequirementImpl;
 import com.khenix.taxse.sources.ProvisionRequirementInterface;
+import com.khenix.taxse.sources.SelectedFilingImpl;
+import com.khenix.taxse.sources.SelectedFilingInterface;
 import com.khenix.taxse.sources.SelectedProvisionImpl;
 import com.khenix.taxse.sources.SelectedProvisionInterface;
 import com.khenix.taxse.util.DatabaseUpgradeHelper;
@@ -24,6 +28,8 @@ public class App extends Application {
   public ProvisionInterface provision;
   public SelectedProvisionInterface selectedProvision;
   public ProvisionRequirementInterface provisionRequirement;
+  public FilingInterface filing;
+  public SelectedFilingInterface selectedFiling;
 
   public static App getInstance() {
     return appInstance;
@@ -37,6 +43,8 @@ public class App extends Application {
     provision = new ProvisionImpl(daoSession);
     selectedProvision = new SelectedProvisionImpl(daoSession);
     provisionRequirement = new ProvisionRequirementImpl(daoSession);
+    filing = new FilingImpl(daoSession);
+    selectedFiling = new SelectedFilingImpl(daoSession);
 
   }
 

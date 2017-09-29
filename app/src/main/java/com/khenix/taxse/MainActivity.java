@@ -17,6 +17,7 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.khenix.taxse.fragments.MainActionsFragment;
+import com.khenix.taxse.util.DataInitializer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
     setupToolBar();
+
+    // initialize data
+    DataInitializer.initializeProvisionAndRequirements();
+    DataInitializer.initializeFiling();
+
 
     MainActionsFragment mainActionsFragment = new MainActionsFragment();
     getFragmentManager().beginTransaction()
