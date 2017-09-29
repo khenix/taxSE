@@ -74,8 +74,7 @@ public class PeriodTypeAFragment extends Fragment {
 
   @OnItemClick(R.id.grid_months)
   void gridListener(AdapterView<?> parent, View view, int position, long id) {
-    String selectedItem = parent.getItemAtPosition(position).toString();
-    ((FilingProgressActivity) getActivity()).setBeginningMOnth(selectedItem);
+    ((FilingProgressActivity) getActivity()).setBeginningMonth(position);
   }
 
 }

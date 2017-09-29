@@ -95,7 +95,7 @@ public class FilingProgressActivity extends AppCompatActivity {
   private String employmentType;
   private String taxPayerType;
   private String periodType;
-  private String beginningMonth;
+  private int beginningMonth;
 
   public String getEmploymentType() {
     return employmentType;
@@ -122,11 +122,11 @@ public class FilingProgressActivity extends AppCompatActivity {
   }
 
 
-  public String getBeginningMonth() {
+  public int getBeginningMonth() {
     return beginningMonth;
   }
 
-  public void setBeginningMOnth(String beginningMonth) {
+  public void setBeginningMonth(int beginningMonth) {
     this.beginningMonth = beginningMonth;
   }
 

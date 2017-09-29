@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 import com.khenix.taxse.App;
+import com.khenix.taxse.FilingProgressActivity;
 import com.khenix.taxse.R;
 import com.khenix.taxse.adapter.FilingAdapter;
 import com.khenix.taxse.schema.Filing;
@@ -113,44 +114,58 @@ public class CalendarFormSelectionFragment extends Fragment {
       SelectedFiling selectedFiling = mapper.map(each, SelectedFiling.class);
       if (selectedFiling.getId().equalsIgnoreCase("1601-E")) {
 
-      }
-      else if (selectedFiling.getId().equalsIgnoreCase("1601-C")) {
+      } else if (selectedFiling.getId().equalsIgnoreCase("1601-C")) {
 
-      }
-      else if (selectedFiling.getId().equalsIgnoreCase("1604-CF")) {
+      } else if (selectedFiling.getId().equalsIgnoreCase("1604-CF")) {
         DateTime now = new DateTime();
         DateTime filingDate = new DateTime(now.getYear() + 1, 1, 30, 0, 0);
         List<String> filingDates = new ArrayList<>();
         filingDates.add(filingDate.toString());
         selectedFiling.setFilingDates(new Gson().toJson(filingDates));
 
-      }
-      else if (selectedFiling.getId().equalsIgnoreCase("1604-E")) {
+      } else if (selectedFiling.getId().equalsIgnoreCase("1604-E")) {
         DateTime now = new DateTime();
         DateTime filingDate = new DateTime(now.getYear() + 1, 2, 28, 0, 0);
         List<String> filingDates = new ArrayList<>();
         filingDates.add(filingDate.toString());
         selectedFiling.setFilingDates(new Gson().toJson(filingDates));
-      }
-      else if (selectedFiling.getId().equalsIgnoreCase("2551-M")) {
+      } else if (selectedFiling.getId().equalsIgnoreCase("2551-M")) {
 
-      }
-      else if (selectedFiling.getId().equalsIgnoreCase("2550-M")) {
+      } else if (selectedFiling.getId().equalsIgnoreCase("2550-M")) {
 
-      }
-      else if (selectedFiling.getId().equalsIgnoreCase("2550-Q")) {
+      } else if (selectedFiling.getId().equalsIgnoreCase("2550-Q")) {
 
-      }
-      else if (selectedFiling.getId().equalsIgnoreCase("1701-Q")) {
+      } else if (selectedFiling.getId().equalsIgnoreCase("1701-Q")) {
 
-      }
-      else if (selectedFiling.getId().equalsIgnoreCase("1701")) {
+      } else if (selectedFiling.getId().equalsIgnoreCase("1701")) {
 
-      }
-      else if (selectedFiling.getId().equalsIgnoreCase("0605")) {
+      } else if (selectedFiling.getId().equalsIgnoreCase("0605")) {
+        if (((FilingProgressActivity) getActivity()).getPeriodType().equalsIgnoreCase("Calendar year")) {
+          DateTime now = new DateTime();
+          DateTime filingDate = new DateTime(now.getYear(), 1, 31, 0, 0);
+          if (!filingDate.isAfterNow()) {
+            filingDate = filingDate.plusYears(1);
+          }
+          List<String> filingDates = new ArrayList<>();
+          filingDates.add(filingDate.toString());
+          selectedFiling.setFilingDates(new Gson().toJson(filingDates));
 
-      }
-      else if (selectedFiling.getId().equalsIgnoreCase("1901")) {
+        } else {
+          DateTime now = new DateTime();
+          int month = ((FilingProgressActivity) getActivity()).getBeginningMonth() + 1;
+          DateTime tmpDate = new DateTime(now.getYear(), month, 1, 0, 0);
+          int maxDate = tmpDate.dayOfMonth().withMaximumValue().getDayOfMonth();
+          DateTime filingDate = new DateTime(tmpDate.getYear(), tmpDate.getMonthOfYear(), maxDate, 0, 0);
+          if (!filingDate.isAfterNow()) {
+            filingDate = filingDate.plusYears(1);
+          }
+          List<String> filingDates = new ArrayList<>();
+          filingDates.add(filingDate.toString());
+          selectedFiling.setFilingDates(new Gson().toJson(filingDates));
+
+        }
+
+      } else if (selectedFiling.getId().equalsIgnoreCase("1901")) {
 
       }
 
