@@ -1,21 +1,47 @@
 package com.khenix.taxse.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
+import com.khenix.taxse.App;
 import com.khenix.taxse.R;
+import com.khenix.taxse.adapter.FilingAdapter;
+import com.khenix.taxse.schema.Filing;
+import com.khenix.taxse.schema.SelectedFiling;
+import com.khenix.taxse.util.ScaleTransformer;
 
+import org.modelmapper.ModelMapper;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import github.hellocsl.layoutmanager.gallery.GalleryLayoutManager;
 
 /**
  * Created by kestrella on 9/29/17.
  */
 
 public class CalendarFormSelectionFragment extends Fragment {
+  private static final String TAG = CalendarFormSelectionFragment.class.getSimpleName();
+  @BindView(R.id.rv_cal_forms)
+  RecyclerView rvForms;
+
+
+  List<Filing> filingList = new ArrayList<>();
+  List<Filing> selectedFilings = new ArrayList<>();
+  ModelMapper mapper = new ModelMapper();
 
   @Nullable
   @Override
@@ -30,5 +56,68 @@ public class CalendarFormSelectionFragment extends Fragment {
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     ButterKnife.bind(this, view);
+
+    filingList = App.getInstance().filing.list();
+
+    GalleryLayoutManager layoutManager1 = new GalleryLayoutManager(GalleryLayoutManager.HORIZONTAL);
+    layoutManager1.attach(rvForms, 0);
+    layoutManager1.setItemTransformer(new ScaleTransformer());
+    FilingAdapter filingAdapter = new FilingAdapter(filingList) {
+      @Override
+      public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return super.onCreateViewHolder(parent, viewType);
+      }
+    };
+    filingAdapter.setOnItemClickListener(new FilingAdapter.OnItemClickListener() {
+      @Override
+      public void onItemClick(View view, int position) {
+        rvForms.smoothScrollToPosition(position);
+        ((CardView) view).setCardBackgroundColor(Color.WHITE);
+        Filing filing = filingList.get(position);
+        if (isItemExistOnSelected(filing)) {
+          selectedFilings.remove(filing);
+
+        }
+
+      }
+    });
+
+    filingAdapter.setOnItemLongClickListener(new FilingAdapter.OnItemLongClickListener() {
+      @Override
+      public boolean onItemLongClick(View view, int position) {
+        rvForms.smoothScrollToPosition(position);
+        ((CardView) view).setCardBackgroundColor(getResources().getColor(R.color.selected_item));
+        Filing filing = filingList.get(position);
+        if (!isItemExistOnSelected(filing)) {
+          selectedFilings.add(filing);
+
+        }
+        return true;
+      }
+    });
+    rvForms.setAdapter(filingAdapter);
+  }
+
+
+  @OnClick(R.id.fab_add_to_cal_forms)
+  void addToFilings() {
+    makeLog(new Gson().toJson(selectedFilings));
+    for (Filing each : selectedFilings) {
+      App.getInstance().selectedFiling.insertOrReplace(mapper.map(each, SelectedFiling.class));
+    }
+  }
+
+  boolean isItemExistOnSelected(Filing filing) {
+    for (Filing each : selectedFilings) {
+      if (each.getId().equals(filing.getId())) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private void makeLog(String message) {
+    String PREFIX = "*********----->>> ";
+    Log.d(TAG, PREFIX + message);
   }
 }
