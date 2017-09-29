@@ -17,13 +17,17 @@ public class SelectedFiling {
   @Property(nameInDb = "title")
   private String title;
 
-  @Generated(hash = 641203147)
-  public SelectedFiling(String id, String title) {
-      this.id = id;
-      this.title = title;
-  }
+  @Property(nameInDb = "filingDates")
+  private String filingDates;
 
-  @Generated(hash = 1226156529)
+  @Generated(hash = 1278653889)
+public SelectedFiling(String id, String title, String filingDates) {
+    this.id = id;
+    this.title = title;
+    this.filingDates = filingDates;
+}
+
+@Generated(hash = 1226156529)
   public SelectedFiling() {
   }
 
@@ -42,4 +46,12 @@ public class SelectedFiling {
   public void setTitle(String title) {
       this.title = title;
   }
+
+public String getFilingDates() {
+    return this.filingDates;
+}
+
+public void setFilingDates(String filingDates) {
+    this.filingDates = filingDates;
+}
 }

@@ -48,5 +48,5 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'org.greenrobot.greendao'
 
 greendao {
-    schemaVersion 2
+    schemaVersion 1
 }

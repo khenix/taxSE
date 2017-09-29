@@ -111,6 +111,7 @@ public class CalendarFormSelectionFragment extends Fragment {
     for (Filing each : selectedFilings) {
       App.getInstance().selectedFiling.insertOrReplace(mapper.map(each, SelectedFiling.class));
     }
+    // // TODO: 9/29/17 filing dates 
   }
 
   void showConfirmDialog() {

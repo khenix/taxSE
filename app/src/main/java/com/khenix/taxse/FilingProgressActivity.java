@@ -89,4 +89,45 @@ public class FilingProgressActivity extends AppCompatActivity {
       return mFragmentTitleList.get(position);
     }
   }
+
+
+  // shared data
+  private String employmentType;
+  private String taxPayerType;
+  private String periodType;
+  private String beginningMonth;
+
+  public String getEmploymentType() {
+    return employmentType;
+  }
+
+  public void setEmploymentType(String employmentType) {
+    this.employmentType = employmentType;
+  }
+
+  public String getTaxPayerType() {
+    return taxPayerType;
+  }
+
+  public void setTaxPayerType(String taxPayerType) {
+    this.taxPayerType = taxPayerType;
+  }
+
+  public String getPeriodType() {
+    return periodType;
+  }
+
+  public void setPeriodType(String periodType) {
+    this.periodType = periodType;
+  }
+
+
+  public String getBeginningMonth() {
+    return beginningMonth;
+  }
+
+  public void setBeginningMOnth(String beginningMonth) {
+    this.beginningMonth = beginningMonth;
+  }
+
 }
