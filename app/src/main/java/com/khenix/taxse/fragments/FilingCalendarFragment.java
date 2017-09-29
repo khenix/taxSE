@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.Spinner;
 
 import com.khenix.taxse.R;
 import com.khenix.taxse.adapter.MonthPickerAdapter;
@@ -23,25 +22,22 @@ import butterknife.ButterKnife;
  * Created by kestrella on 9/29/17.
  */
 
-public class PeriodTypeAFragment extends Fragment {
+public class FilingCalendarFragment extends Fragment {
   @BindView(R.id.grid_months)
   GridView gridMonths;
 
   MonthPickerAdapter monthPickerAdapter;
 
   List<String> months = new ArrayList<>();
-
+  @Nullable
   @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-  }
-
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                            Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.period_type_a_layout, container, false);
+    return inflater.inflate(R.layout.fragment_filing_calendar, container, false);
+
   }
 
+  @SuppressWarnings("deprecation")
   @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
@@ -50,5 +46,4 @@ public class PeriodTypeAFragment extends Fragment {
     monthPickerAdapter = new MonthPickerAdapter(getActivity(), months);
     gridMonths.setAdapter(monthPickerAdapter);
   }
-
 }

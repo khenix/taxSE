@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.khenix.taxse.fragments.CalendarFormSelectionFragment;
+import com.khenix.taxse.fragments.FilingCalendarFragment;
 import com.khenix.taxse.fragments.PayerTypeAFragment;
 import com.khenix.taxse.fragments.PayerTypeBFragment;
 import com.khenix.taxse.fragments.PeriodTypeAFragment;
@@ -34,6 +35,7 @@ public class FilingProgressActivity extends AppCompatActivity {
   PayerTypeBFragment payerTypeBFragment;
   PeriodTypeAFragment periodTypeAFragment;
   CalendarFormSelectionFragment calendarFormSelectionFragment;
+  FilingCalendarFragment filingCalendarFragment;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +52,12 @@ public class FilingProgressActivity extends AppCompatActivity {
     payerTypeBFragment = new PayerTypeBFragment();
     periodTypeAFragment = new PeriodTypeAFragment();
     calendarFormSelectionFragment = new CalendarFormSelectionFragment();
+    filingCalendarFragment = new FilingCalendarFragment();
     adapter.addFragment(payerTypeAFragment, "Step 1");
     adapter.addFragment(payerTypeBFragment, "Step 2");
     adapter.addFragment(periodTypeAFragment, "Step 3");
     adapter.addFragment(calendarFormSelectionFragment, "Step 4");
+    adapter.addFragment(filingCalendarFragment, "Step 5");
     viewPager.setAdapter(adapter);
   }
 
