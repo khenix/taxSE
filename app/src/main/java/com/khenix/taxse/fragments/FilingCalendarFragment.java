@@ -1,8 +1,10 @@
 package com.khenix.taxse.fragments;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,5 +74,35 @@ public class FilingCalendarFragment extends Fragment {
     int yr = Integer.parseInt(tvYrDisplayed.getText().toString());
     yr++;
     tvYrDisplayed.setText(String.valueOf(yr));
+  }
+
+  @OnClick(R.id.btn_done)
+  void doneListener() {
+    showConfirmDialog();
+  }
+
+  void showConfirmDialog() {
+    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    AlertDialog dialog;
+
+    builder.setMessage(getString(R.string.enable_conf_msg))
+        .setPositiveButton(R.string.enable, new DialogInterface.OnClickListener() {
+
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            // todo: enable push notif
+            dialog.dismiss();
+          }
+        })
+        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            dialog.dismiss();
+          }
+        });
+
+    dialog = builder.create();
+    dialog.show();
   }
 }

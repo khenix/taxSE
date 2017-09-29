@@ -44,6 +44,10 @@
 	<string name="next">&gt;</string>
 	<string name="add_filing">Add</string>
 	<string name="done">Done</string>
+	<string name="enable_conf_msg">Enable push notifications to Filing Calendar?</string>
+	<string name="enable">Enable</string>
+	<string name="no">No</string>
+
 
 
 	> &gt;
