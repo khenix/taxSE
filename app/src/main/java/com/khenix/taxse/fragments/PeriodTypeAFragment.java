@@ -45,12 +45,12 @@ public class PeriodTypeAFragment extends Fragment {
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     ButterKnife.bind(this, view);
-    initiliazeMonths();
+    initializeMonths();
     monthPickerAdapter = new MonthPickerAdapter(getActivity(), months);
     gridMonths.setAdapter(monthPickerAdapter);
   }
 
-  void initiliazeMonths() {
+  void initializeMonths() {
     months.add("Jan");
     months.add("Feb");
     months.add("Mar");
