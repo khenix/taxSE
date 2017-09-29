@@ -1,6 +1,7 @@
 package com.khenix.taxse.fragments;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 import com.khenix.taxse.App;
+import com.khenix.taxse.FilingProgressActivity;
 import com.khenix.taxse.R;
 import com.khenix.taxse.schema.Provision;
 import com.khenix.taxse.schema.ProvisionRequirement;
@@ -58,6 +60,12 @@ public class MainActionsFragment extends Fragment {
           .addToBackStack("ProvisionSelectionFragment").commit();
     }
 
+
+  }
+
+  @OnClick(R.id.btn_filing_cal)
+  void openFilingCalendar() {
+    startActivity(new Intent(getActivity(), FilingProgressActivity.class));
 
   }
 

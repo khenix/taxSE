@@ -40,6 +40,7 @@ dependencies {
     compile 'org.greenrobot:greendao:3.2.2'
     compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.0.0'
     compile 'org.modelmapper:modelmapper:0.7.7'
+    compile 'me.relex:circleindicator:1.2.2@aar'
 
 
 }
