@@ -23,5 +23,11 @@
 	<string name="unknown_sign_in_response">Unknown response from AuthUI sign-in</string>
 	<string name="sign_out_failed">Sign out failed</string>
 
+	<!-- filing calendar -->
+	<string-array name="payer_type_a_list">
+		<item>Employed</item>
+		<item>Self-Employed</item>
+	</string-array>
+
 
 </resources>

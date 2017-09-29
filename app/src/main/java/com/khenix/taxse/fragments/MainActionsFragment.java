@@ -65,6 +65,7 @@ public class MainActionsFragment extends Fragment {
 
   @OnClick(R.id.btn_filing_cal)
   void openFilingCalendar() {
+//    getActivity().finish();
     startActivity(new Intent(getActivity(), FilingProgressActivity.class));
 
   }

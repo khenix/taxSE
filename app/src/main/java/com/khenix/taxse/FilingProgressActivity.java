@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.khenix.taxse.fragments.PayerTypeAFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,8 @@ public class FilingProgressActivity extends AppCompatActivity {
   @BindView(R.id.indicator)
   CircleIndicator indicator;
 
+  PayerTypeAFragment payerTypeAFragment;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -36,6 +40,8 @@ public class FilingProgressActivity extends AppCompatActivity {
 
   private void setupViewPager() {
     ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+    payerTypeAFragment = new PayerTypeAFragment();
+    adapter.addFragment(payerTypeAFragment, "Step 1");
     viewPager.setAdapter(adapter);
   }
 
