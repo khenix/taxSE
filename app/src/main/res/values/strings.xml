@@ -28,6 +28,10 @@
 		<item>Employed</item>
 		<item>Self-Employed</item>
 	</string-array>
+	<string-array name="payer_type_b_list">
+		<item>Professional</item>
+		<item>Sole-Proprietor</item>
+	</string-array>
 
 
 </resources>
