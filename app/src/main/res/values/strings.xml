@@ -36,6 +36,9 @@
 		<item>Calendar year</item>
 		<item>Fiscal year</item>
 	</string-array>
+	<string name="add">Add</string>
+	<string name="cancel">Cancel</string>
+	<string name="add_confirm">Are you sure you want to add these to your calendar?</string>
 
 
 </resources>

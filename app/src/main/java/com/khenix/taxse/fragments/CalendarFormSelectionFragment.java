@@ -1,9 +1,11 @@
 package com.khenix.taxse.fragments;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -100,11 +102,40 @@ public class CalendarFormSelectionFragment extends Fragment {
 
 
   @OnClick(R.id.fab_add_to_cal_forms)
-  void addToFilings() {
+  void addToFilingsListener() {
+    showConfirmDialog();
+  }
+
+  private void saveAsSelectedFilings() {
     makeLog(new Gson().toJson(selectedFilings));
     for (Filing each : selectedFilings) {
       App.getInstance().selectedFiling.insertOrReplace(mapper.map(each, SelectedFiling.class));
     }
+  }
+
+  void showConfirmDialog() {
+    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    AlertDialog dialog;
+
+    builder.setMessage(getString(R.string.add_confirm))
+        .setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
+
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            saveAsSelectedFilings();
+            dialog.dismiss();
+          }
+        })
+        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            dialog.dismiss();
+          }
+        });
+
+    dialog = builder.create();
+    dialog.show();
   }
 
   boolean isItemExistOnSelected(Filing filing) {
