@@ -21,6 +21,7 @@ import com.khenix.taxse.schema.Filing;
 import com.khenix.taxse.schema.SelectedFiling;
 import com.khenix.taxse.util.ScaleTransformer;
 
+import org.joda.time.DateTime;
 import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
@@ -109,41 +110,48 @@ public class CalendarFormSelectionFragment extends Fragment {
   private void saveAsSelectedFilings() {
     makeLog(new Gson().toJson(selectedFilings));
     for (Filing each : selectedFilings) {
-//      App.getInstance().selectedFiling.insertOrReplace(mapper.map(each, SelectedFiling.class));
       SelectedFiling selectedFiling = mapper.map(each, SelectedFiling.class);
       if (selectedFiling.getId().equalsIgnoreCase("1601-E")) {
 
       }
-      if (selectedFiling.getId().equalsIgnoreCase("1601-C")) {
+      else if (selectedFiling.getId().equalsIgnoreCase("1601-C")) {
 
       }
-      if (selectedFiling.getId().equalsIgnoreCase("1604-CF")) {
+      else if (selectedFiling.getId().equalsIgnoreCase("1604-CF")) {
+        DateTime now = new DateTime();
+        DateTime filingDate = new DateTime(now.getYear() + 1, 1, 30, 0, 0);
+        List<String> filingDates = new ArrayList<>();
+        filingDates.add(filingDate.toString());
+        selectedFiling.setFilingDates(new Gson().toJson(filingDates));
 
       }
-      if (selectedFiling.getId().equalsIgnoreCase("1604-E")) {
+      else if (selectedFiling.getId().equalsIgnoreCase("1604-E")) {
 
       }
-      if (selectedFiling.getId().equalsIgnoreCase("2551-M")) {
+      else if (selectedFiling.getId().equalsIgnoreCase("2551-M")) {
 
       }
-      if (selectedFiling.getId().equalsIgnoreCase("2550-M")) {
+      else if (selectedFiling.getId().equalsIgnoreCase("2550-M")) {
 
       }
-      if (selectedFiling.getId().equalsIgnoreCase("2550-Q")) {
+      else if (selectedFiling.getId().equalsIgnoreCase("2550-Q")) {
 
       }
-      if (selectedFiling.getId().equalsIgnoreCase("1701-Q")) {
+      else if (selectedFiling.getId().equalsIgnoreCase("1701-Q")) {
 
       }
-      if (selectedFiling.getId().equalsIgnoreCase("1701")) {
+      else if (selectedFiling.getId().equalsIgnoreCase("1701")) {
 
       }
-      if (selectedFiling.getId().equalsIgnoreCase("0605")) {
+      else if (selectedFiling.getId().equalsIgnoreCase("0605")) {
 
       }
-      if (selectedFiling.getId().equalsIgnoreCase("1901")) {
+      else if (selectedFiling.getId().equalsIgnoreCase("1901")) {
 
       }
+
+      App.getInstance().selectedFiling.insertOrReplace(selectedFiling);
+      makeLog(new Gson().toJson(App.getInstance().selectedFiling.list()));
 
     }
     // // TODO: 9/29/17 filing dates 

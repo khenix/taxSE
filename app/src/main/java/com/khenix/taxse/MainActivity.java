@@ -9,6 +9,7 @@ import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.khenix.taxse.fragments.MainActionsFragment;
 import com.khenix.taxse.util.DataInitializer;
+
+import org.joda.time.DateTime;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
     setupToolBar();
+
+    //tester
+
+    Log.d("Debug", "------- >>> ");
 
     // initialize data
     DataInitializer.initializeProvisionAndRequirements();

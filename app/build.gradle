@@ -41,6 +41,7 @@ dependencies {
     compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.0.0'
     compile 'org.modelmapper:modelmapper:0.7.7'
     compile 'me.relex:circleindicator:1.2.2@aar'
+    compile 'joda-time:joda-time:2.9.7'
 
 
 }
