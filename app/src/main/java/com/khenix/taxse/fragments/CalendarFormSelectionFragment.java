@@ -126,7 +126,11 @@ public class CalendarFormSelectionFragment extends Fragment {
 
       }
       else if (selectedFiling.getId().equalsIgnoreCase("1604-E")) {
-
+        DateTime now = new DateTime();
+        DateTime filingDate = new DateTime(now.getYear() + 1, 2, 28, 0, 0);
+        List<String> filingDates = new ArrayList<>();
+        filingDates.add(filingDate.toString());
+        selectedFiling.setFilingDates(new Gson().toJson(filingDates));
       }
       else if (selectedFiling.getId().equalsIgnoreCase("2551-M")) {
 
